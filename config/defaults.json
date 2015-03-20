@@ -1,0 +1,8 @@
+{
+  "NODE_ENV": "development",
+  "PORT": 3000,
+  "MONGO_URL": "mongodb://localhost:27017/code-rally",
+  "REDIS_URL": "redis://localhost:6379",
+  "SESSION_SECRET": "bacfebac12699190f287622adb9f2845781e08bc",
+  "SESSION_COOKIE": "fdd7d370ec08e080e2753efe3a0e2ecb482dd6e5"
+}
