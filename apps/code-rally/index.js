@@ -13,7 +13,12 @@ app.loadViews(__dirname + '/views');
 app.loadStyles(__dirname + '/styles');
 
 app.get('home', '/');
-
+app.get('test', function (page, model, params, next) {
+  // Subscribe specifies the data to sync
+  model.subscribe('hello.message', function() {
+    page.render('test');
+  });
+});
 
 
 app.get('login', '/login');
