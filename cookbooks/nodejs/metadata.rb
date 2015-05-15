@@ -1,11 +1,23 @@
-name             "nodejs"
-maintainer       "Promet Solutions"
-maintainer_email "marius@promethost.com"
-license          "Apache 2.0"
-description      "Installs/Configures nodejs"
-long_description IO.read(File.join(File.dirname(__FILE__), 'README.rdoc'))
-version          "0.5.1"
-recipe           "nodejs", "Installs Node.JS from source"
-recipe           "nodejs::npm", "Installs npm - a package manager for node"
+name 'nodejs'
+maintainer 'redguide'
+maintainer_email 'guilhem@lettron.fr'
+license 'Apache 2.0'
+description 'Installs/Configures node.js & io.js'
+long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
+source_url 'https://github.com/redguide/nodejs'
+issues_url 'https://github.com/redguide/nodejs/issues'
+version '2.4.1'
 
-depends          "build-essential"
+conflicts 'node'
+
+depends 'yum-epel'
+depends 'build-essential'
+depends 'ark'
+depends 'apt'
+depends 'homebrew'
+
+%w(debian ubuntu centos redhat smartos mac_os_x).each do |os|
+  supports os
+end
+
+suggests 'application_nodejs'
