@@ -7,7 +7,7 @@ function store(derby, publicDir) {
   var mongo = liveDbMongo(process.env.MONGO_URL + '?auto_reconnect', {safe: true});
 
   derby.use(require('racer-bundle'));
-  derby.use(require('racer-schema'), require('./schema'));
+  // derby.use(require('racer-schema'), require('./schema'));
 
   var redis = require('redis-url');
   var livedb = require('livedb');
