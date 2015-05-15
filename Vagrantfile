@@ -7,6 +7,9 @@ Vagrant::Config.run do |config|
 
   config.vm.share_folder "app", "/home/vagrant/app", "./"
 
+  config.ssh.username = "vagrant"
+  config.ssh.password = "vagrant"
+
   # Uncomment the following line to allow for symlinks
   # in the app folder. This will not work on Windows, and will
   # not work with Vagrant providers other than VirtualBox
