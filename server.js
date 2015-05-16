@@ -6,6 +6,7 @@ var liveDbMongo = require('livedb-mongo');
 var redis = require('redis').createClient();
 var racerBrowserChannel = require('racer-browserchannel');
 var racer = require('racer');
+var stringify = require('stringify');
 
 racer.use(require('racer-bundle'));
 
@@ -32,7 +33,11 @@ app.use(function(err, req, res, next) {
 function scriptBundle(cb) {
   // Use Browserify to generate a script file containing all of the client-side
   // scripts, Racer, and BrowserChannel
-  store.bundle(__dirname + '/client/index.js', function(err, js) {
+  store.bundle(__dirname + '/client/index.js', {
+    transform: stringify({
+      extensions: ['.html'], minify: true
+    })
+  }, function(err, js) {
     if (err) return cb(err);
     cb(null, js);
   });
@@ -75,13 +80,7 @@ app.get('/:roomId', function(req, res, next) {
     model.ref('_page.room', roomPath);
     model.bundle(function(err, bundle) {
       if (err) return next(err);
-      var html = indexPage({
-        room: req.params.roomId,
-        text: model.get(roomPath),
-        // Escape bundle for use in an HTML attribute in single quotes, since
-        // JSON will have lots of double quotes
-        bundle: JSON.stringify(bundle).replace(/'/g, '&#39;')
-      });
+      var html = indexTemplate + '\n<script async src="/script.js" data-bundle=\'' + JSON.stringify(bundle).replace(/'/g, '&#39;') + '\'></script>';
       res.send(html);
     });
   });
@@ -91,7 +90,7 @@ app.get('/', function(req, res) {
   res.redirect('/home');
 });
 
-var port = process.env.PORT || 3000;
+var port = process.env.PORT || 51893;
 
 http.createServer(app).listen(port, function() {
   console.log('Go to http://localhost:' + port);

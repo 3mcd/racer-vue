@@ -23,5 +23,9 @@
   },
   "license": "",
   "readme": "code-rally\n",
-  "readmeFilename": "README.md"
+  "readmeFilename": "README.md",
+  "devDependencies": {
+    "stringify": "^3.1.0"
+  },
+  "browserify": { "transform": ["stringify"] }
 }

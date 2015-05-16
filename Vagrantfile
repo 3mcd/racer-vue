@@ -3,7 +3,7 @@ Vagrant::Config.run do |config|
   
   config.vm.box_url = "https://github.com/holms/vagrant-jessie-box/releases/download/Jessie-v0.1/Debian-jessie-amd64-netboot.box"
 
-  config.vm.forward_port 3000, 3000
+  config.vm.forward_port 51893, 51893
 
   config.vm.share_folder "app", "/home/vagrant/app", "./"
 
