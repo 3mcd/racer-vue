@@ -1,28 +1,12 @@
 <!DOCTYPE html>
-<meta charset="utf-8">
-<title>CodeRally</title>
-<style>
-  #pad-container {
-    position: absolute;
-    top: 24px;
-    right: 24px;
-    bottom: 24px;
-    left: 24px;
-  }
-  #pad {
-    font: 16px/1.2 sans-serif;
-    padding: 4px 7px;
-    height: 100%;
-    width: 100%;
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-  }
-  body {
-    background: #ddd;
-  }
-</style>
-
-<cr-root>
-  <textarea class="Editor" v-racer-model="_page.room" autofocus></textarea>
-</cr-root>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>CodeRally</title>
+  </head>
+  <body>
+    <cr-root>
+      <cr-editor v-with="store" ></cr-editor>
+    </cr-root>
+  </body>
+</html>

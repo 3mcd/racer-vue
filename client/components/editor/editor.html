@@ -1,0 +1,16 @@
+<label for="name">
+  Fruit Store Name: <input name="name" id="name" v-live-text="name" autofocus></input>
+</label>
+
+<ul>
+  <li v-repeat="fruits">
+    <label for="fruit-{{$index}}-name">
+      Fruit: <input name="fruit-{{$index}}-name" v-live-text="name">
+    </label>
+    <label for="fruit-{{$index}}-cost">
+      Cost: <input name="fruit-{{$index}}-cost" v-live-text="cost">
+    </label>
+  </li>
+</ul>
+
+<button v-on="click : onAddClick">Add Fruit</button>

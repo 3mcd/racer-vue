@@ -1,1 +1,5 @@
-require('./racer-model');
+////////////////////
+// Vue Directives //
+////////////////////
+
+require('./live-text');

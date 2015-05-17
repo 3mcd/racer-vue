@@ -2,13 +2,14 @@ var Vue = require('vue');
 var Racer = require('racer');
 var bootstrap = JSON.parse(document.scripts[0].getAttribute('data-bundle'));
 var Model = Racer.createModel(bootstrap);
+var modelProxy = require('./racer-model-proxy');
 
-require('./directives/index');
-require('./components/index');
+require('./directives');
+require('./components');
 
-var editor = new Vue({
+var app = new Vue({
   el: "body",
   data: {
-    model: Model
+    store: modelProxy(Model.at('_page.store'))
   }
 });

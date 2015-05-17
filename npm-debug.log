@@ -1,126 +1,27 @@
 0 info it worked if it ends with ok
-1 verbose cli [ '/usr/bin/node', '/usr/bin/npm', 'install' ]
+1 verbose cli [ '/usr/bin/node', '/usr/bin/npm', 'start' ]
 2 info using npm@1.4.28
 3 info using node@v0.10.38
 4 verbose node symlink /usr/bin/node
-5 warn package.json code-rally@0.0.1 No repository field.
-6 verbose readDependencies using package.json deps
-7 verbose install where, deps [ '/home/vagrant/app',
-7 verbose install   [ 'express',
-7 verbose install     'handlebars',
-7 verbose install     'livedb-mongo',
-7 verbose install     'racer',
-7 verbose install     'racer-browserchannel',
-7 verbose install     'racer-bundle',
-7 verbose install     'redis',
-7 verbose install     'vue' ] ]
-8 info preinstall code-rally@0.0.1
-9 verbose readDependencies using package.json deps
-10 verbose cache add [ 'racer-browserchannel@^0.3.0', null ]
-11 verbose cache add name=undefined spec="racer-browserchannel@^0.3.0" args=["racer-browserchannel@^0.3.0",null]
-12 verbose parsed url { protocol: null,
-12 verbose parsed url   slashes: null,
-12 verbose parsed url   auth: null,
-12 verbose parsed url   host: null,
-12 verbose parsed url   port: null,
-12 verbose parsed url   hostname: null,
-12 verbose parsed url   hash: null,
-12 verbose parsed url   search: null,
-12 verbose parsed url   query: null,
-12 verbose parsed url   pathname: 'racer-browserchannel@^0.3.0',
-12 verbose parsed url   path: 'racer-browserchannel@^0.3.0',
-12 verbose parsed url   href: 'racer-browserchannel@^0.3.0' }
-13 verbose already installed skipping racer-bundle@^0.1.1 /home/vagrant/app
-14 verbose cache add [ 'redis@^0.10.3', null ]
-15 verbose cache add name=undefined spec="redis@^0.10.3" args=["redis@^0.10.3",null]
-16 verbose parsed url { protocol: null,
-16 verbose parsed url   slashes: null,
-16 verbose parsed url   auth: null,
-16 verbose parsed url   host: null,
-16 verbose parsed url   port: null,
-16 verbose parsed url   hostname: null,
-16 verbose parsed url   hash: null,
-16 verbose parsed url   search: null,
-16 verbose parsed url   query: null,
-16 verbose parsed url   pathname: 'redis@^0.10.3',
-16 verbose parsed url   path: 'redis@^0.10.3',
-16 verbose parsed url   href: 'redis@^0.10.3' }
-17 verbose cache add name="racer-browserchannel" spec="^0.3.0" args=["racer-browserchannel","^0.3.0"]
-18 verbose parsed url { protocol: null,
-18 verbose parsed url   slashes: null,
-18 verbose parsed url   auth: null,
-18 verbose parsed url   host: null,
-18 verbose parsed url   port: null,
-18 verbose parsed url   hostname: null,
-18 verbose parsed url   hash: null,
-18 verbose parsed url   search: null,
-18 verbose parsed url   query: null,
-18 verbose parsed url   pathname: '^0.3.0',
-18 verbose parsed url   path: '^0.3.0',
-18 verbose parsed url   href: '^0.3.0' }
-19 verbose addNamed [ 'racer-browserchannel', '^0.3.0' ]
-20 verbose addNamed [ null, '>=0.3.0-0 <0.4.0-0' ]
-21 verbose cache add name="redis" spec="^0.10.3" args=["redis","^0.10.3"]
-22 verbose parsed url { protocol: null,
-22 verbose parsed url   slashes: null,
-22 verbose parsed url   auth: null,
-22 verbose parsed url   host: null,
-22 verbose parsed url   port: null,
-22 verbose parsed url   hostname: null,
-22 verbose parsed url   hash: null,
-22 verbose parsed url   search: null,
-22 verbose parsed url   query: null,
-22 verbose parsed url   pathname: '^0.10.3',
-22 verbose parsed url   path: '^0.10.3',
-22 verbose parsed url   href: '^0.10.3' }
-23 verbose addNamed [ 'redis', '^0.10.3' ]
-24 verbose addNamed [ null, '>=0.10.3-0 <0.11.0-0' ]
-25 verbose cache add [ 'vue@^0.11.10', null ]
-26 verbose cache add name=undefined spec="vue@^0.11.10" args=["vue@^0.11.10",null]
-27 verbose parsed url { protocol: null,
-27 verbose parsed url   slashes: null,
-27 verbose parsed url   auth: null,
-27 verbose parsed url   host: null,
-27 verbose parsed url   port: null,
-27 verbose parsed url   hostname: null,
-27 verbose parsed url   hash: null,
-27 verbose parsed url   search: null,
-27 verbose parsed url   query: null,
-27 verbose parsed url   pathname: 'vue@^0.11.10',
-27 verbose parsed url   path: 'vue@^0.11.10',
-27 verbose parsed url   href: 'vue@^0.11.10' }
-28 verbose cache add name="vue" spec="^0.11.10" args=["vue","^0.11.10"]
-29 verbose parsed url { protocol: null,
-29 verbose parsed url   slashes: null,
-29 verbose parsed url   auth: null,
-29 verbose parsed url   host: null,
-29 verbose parsed url   port: null,
-29 verbose parsed url   hostname: null,
-29 verbose parsed url   hash: null,
-29 verbose parsed url   search: null,
-29 verbose parsed url   query: null,
-29 verbose parsed url   pathname: '^0.11.10',
-29 verbose parsed url   path: '^0.11.10',
-29 verbose parsed url   href: '^0.11.10' }
-30 verbose addNamed [ 'vue', '^0.11.10' ]
-31 verbose addNamed [ null, '>=0.11.10-0 <0.12.0-0' ]
-32 silly lockFile 3e5cf7d1-vue-0-11-10 vue@^0.11.10
-33 verbose lock vue@^0.11.10 /home/vagrant/.npm/3e5cf7d1-vue-0-11-10.lock
-34 silly lockFile 3e5cf7d1-vue-0-11-10 vue@^0.11.10
-35 error Error: Attempt to unlock vue@^0.11.10, which hasn't been locked
-35 error     at unlock (/usr/lib/node_modules/npm/lib/utils/locker.js:44:11)
-35 error     at cb (/usr/lib/node_modules/npm/lib/cache/add-named.js:32:5)
-35 error     at /usr/lib/node_modules/npm/lib/cache/add-named.js:41:20
-35 error     at /usr/lib/node_modules/npm/lib/utils/locker.js:30:7
-35 error     at cb (/usr/lib/node_modules/npm/node_modules/lockfile/lockfile.js:149:38)
-35 error     at /usr/lib/node_modules/npm/node_modules/lockfile/lockfile.js:177:38
-35 error     at Object.oncomplete (fs.js:108:15)
-36 error If you need help, you may report this *entire* log,
-36 error including the npm and node versions, at:
-36 error     <http://github.com/npm/npm/issues>
-37 error System Linux 3.16.0-4-amd64
-38 error command "/usr/bin/node" "/usr/bin/npm" "install"
-39 error cwd /home/vagrant/app
-40 error node -v v0.10.38
-41 error npm -v 1.4.28
-42 verbose exit [ 1, true ]
+5 verbose run-script [ 'prestart', 'start', 'poststart' ]
+6 info prestart code-rally@0.0.1
+7 info start code-rally@0.0.1
+8 verbose unsafe-perm in lifecycle true
+9 info code-rally@0.0.1 Failed to exec start script
+10 error code-rally@0.0.1 start: `node server.js`
+10 error Exit status 8
+11 error Failed at the code-rally@0.0.1 start script.
+11 error This is most likely a problem with the code-rally package,
+11 error not with npm itself.
+11 error Tell the author that this fails on your system:
+11 error     node server.js
+11 error You can get their info via:
+11 error     npm owner ls code-rally
+11 error There is likely additional logging output above.
+12 error System Linux 3.16.0-4-amd64
+13 error command "/usr/bin/node" "/usr/bin/npm" "start"
+14 error cwd /home/vagrant/app
+15 error node -v v0.10.38
+16 error npm -v 1.4.28
+17 error code ELIFECYCLE
+18 verbose exit [ 1, true ]
