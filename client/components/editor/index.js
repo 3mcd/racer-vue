@@ -3,10 +3,6 @@ var Vue = require('vue'),
 
 module.exports = Vue.component('cr-editor', {
   template: template,
-  created: function () {
-    this.$set('orderField', 'cost');
-    this.$set('reverse', true);
-  },
   methods: {
     addItem: function () {
       var newFruit = { name: '', cost: 0 };
@@ -17,7 +13,8 @@ module.exports = Vue.component('cr-editor', {
       this.fruits.$model.pass({ local: true }).remove(index);
     },
     orderBy: function (prop) {
-      this.orderField = prop;
+      this.$set('orderField', prop);
+      this.$set('reverse', !this.$get('reverse'));
     }
   }
 });
