@@ -9,18 +9,18 @@ module.exports = function modelProxy(model, path, parent) {
   }
 
   var proxy = model.get();
-  var child;
 
   // TODO: Check if array or obj here
   for (var prop in proxy) {
-    if (proxy.hasOwnProperty(prop) && 'object' == typeof proxy[prop]) {
+    if (proxy.hasOwnProperty(prop) && 'object' == typeof proxy[prop] && proxy[prop] !== null) {
       proxy[prop] = modelProxy(model.at(prop), prop, proxy);
     }
   }
 
-  proxy.$ref = model;
+  proxy.$model = model;
   proxy.$subPath = path;
 
+  // Build new proxy for each inserted value
   model.on('insert', function onModelInsert(index, values, passed) {
     for (var i = 0; i < values.length; i++) {
       proxy[index + i] = modelProxy(model.at(index + i), index + i, proxy);

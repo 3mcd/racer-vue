@@ -7,14 +7,14 @@ Vue.directive('live-text', {
   bind: function () {
     var _this = this;
 
-    this.handler = function () {
-      var scoped = _this.vm.$data.$ref.at(_this.expression);
-      var previous = scoped.get();
+    this.scoped = _this.vm.$data.$model.at(this.expression);
+    this.type = typeof this.scoped.get();
 
-      if ('number' == typeof previous) {
-        intOp(scoped, parseInt(_this.el.value));
+    this.handler = function () {
+      if ('number' == _this.type) {
+        intOp(_this.scoped, parseInt(_this.el.value));
       } else {
-        stringOp(scoped, _this.el.value, scoped.get());
+        stringOp(_this.scoped, _this.el.value, _this.scoped.get());
       }
     };
 
@@ -26,6 +26,8 @@ Vue.directive('live-text', {
   },
 
   update: function (value, previous) {
+    value = value || '';
+
     if (previous === value) return;
 
     var pos = getInputSelection(this.el);

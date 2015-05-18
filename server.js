@@ -1,7 +1,6 @@
 var fs = require('fs');
 var http = require('http');
 var express = require('express');
-var handlebars = require('handlebars');
 var liveDbMongo = require('livedb-mongo');
 var redis = require('redis').createClient();
 var racerBrowserChannel = require('racer-browserchannel');
@@ -63,7 +62,6 @@ app.get('/script.js', function(req, res, next) {
 });
 
 var indexTemplate = fs.readFileSync(__dirname + '/index.html', 'utf-8');
-var indexPage = handlebars.compile(indexTemplate);
 
 app.get('/:roomId', function(req, res, next) {
   var model = req.getModel();

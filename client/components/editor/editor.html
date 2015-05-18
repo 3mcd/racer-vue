@@ -2,8 +2,10 @@
   Fruit Store Name: <input name="name" id="name" v-live-text="name" autofocus></input>
 </label>
 
+Order by: <button v-on="click : orderBy('cost')">Cost</button> <button v-on="click : orderBy('name')">Name</button>
+
 <ul>
-  <li v-repeat="fruits">
+  <li v-repeat="fruits | orderBy 'cost' -1">
     <label for="fruit-{{$index}}-name">
       Fruit: <input name="fruit-{{$index}}-name" v-live-text="name">
     </label>
@@ -13,4 +15,4 @@
   </li>
 </ul>
 
-<button v-on="click : onAddClick">Add Fruit</button>
+<button v-on="click : addItem">Add Fruit</button>
