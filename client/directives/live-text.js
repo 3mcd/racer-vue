@@ -18,9 +18,8 @@ Vue.directive('live-text', {
       }
     };
 
-    this.attr = this.el.nodeType === 3 || this.el.tagName == "TEXTAREA" || this.el.tagName == "INPUT"
-      ? 'value'
-      : 'textContent';
+    this.attr = this.el.nodeType === 3 || this.el.tagName == "TEXTAREA" || this.el.tagName == "INPUT" ?
+    'value' : 'textContent';
 
     this.el.addEventListener('keyup', this.handler);
   },

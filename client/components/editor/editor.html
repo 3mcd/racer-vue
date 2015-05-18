@@ -12,6 +12,7 @@ Order by: <button v-on="click : orderBy('cost')">Cost</button> <button v-on="cli
     <label for="fruit-{{$index}}-cost">
       Cost: <input name="fruit-{{$index}}-cost" v-live-text="cost">
     </label>
+    <button v-on="click : removeItem(fruits.indexOf(this.$data))">Remove</button>
   </li>
 </ul>
 

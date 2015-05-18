@@ -12,6 +12,10 @@ module.exports = Vue.component('cr-editor', {
       var newFruit = { name: '', cost: 0 };
       this.fruits.$model.pass({ local: true }).push(newFruit);
     },
+    removeItem: function (index) {
+      console.log(index);
+      this.fruits.$model.pass({ local: true }).remove(index);
+    },
     orderBy: function (prop) {
       this.orderField = prop;
     }
