@@ -1,5 +1,5 @@
-////////////////////
-// Vue Components //
-////////////////////
+/**
+ * Vue Components
+ */
 
 require('./editor');

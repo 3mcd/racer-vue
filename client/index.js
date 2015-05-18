@@ -7,9 +7,13 @@ var modelProxy = require('./racer-model-proxy');
 require('./directives');
 require('./components');
 
+var store = modelProxy(Model.at('_page.store'));
+
+window.store = store;
+
 var app = new Vue({
   el: "body",
   data: {
-    store: modelProxy(Model.at('_page.store'))
+    store: store
   }
 });

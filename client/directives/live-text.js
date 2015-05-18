@@ -46,6 +46,8 @@ function stringOp(model, value, previous) {
   var start = 0,
       end = 0;
 
+  previous = previous || '';
+
   if (previous === value) return;
 
   while (previous && (previous.charAt(start) == value.charAt(start))) {

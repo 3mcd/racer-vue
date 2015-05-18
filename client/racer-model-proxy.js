@@ -28,7 +28,7 @@ module.exports = function modelProxy(model, path, parent) {
    */
   var proxy = model.get();
   /**
-   * Recursively create modelProxy objects for each child path.
+   * Recursively create proxy objects for each child object.
    */
   for (var prop in proxy) {
     if (proxy.hasOwnProperty(prop) && 'object' == typeof proxy[prop] && proxy[prop] !== null) {

@@ -1,5 +1,5 @@
-////////////////////
-// Vue Directives //
-////////////////////
+/**
+ * Vue Directives
+ */
 
 require('./live-text');

@@ -2,7 +2,9 @@
   Fruit Store Name: <input name="name" id="name" v-live-text="name" autofocus></input>
 </label>
 
-Order by: <button v-on="click : orderBy('cost')">Cost</button> <button v-on="click : orderBy('name')">Name</button> (order: <span v-text="reverse ? 'asc' : 'desc'"></span>)
+<div>
+  Order by: <button v-on="click : orderBy('cost')">Cost</button> <button v-on="click : orderBy('name')">Name</button> (order: <span v-text="reverse ? 'asc' : 'desc'"></span>)
+</div>
 
 <ul>
   <li v-repeat="fruits | orderBy orderField reverse">
@@ -16,4 +18,25 @@ Order by: <button v-on="click : orderBy('cost')">Cost</button> <button v-on="cli
   </li>
 </ul>
 
-<button v-on="click : addItem">Add Fruit</button>
+<div>
+  <button v-on="click : addItem">Add Fruit</button>
+</div>
+
+<br />
+
+<div>
+  <textarea v-live-text="html"></textarea>
+</div>
+
+<hr />
+
+<h2>{{name}}</h2>
+
+{{{html}}}
+<h3>Fruits</h3>
+<ul>
+  <li v-repeat="fruits | orderBy orderField reverse">
+    <label for="fruit-{{$index}}-name">
+      <span>{{name}} - ${{cost}}</span>
+  </li>
+</ul>

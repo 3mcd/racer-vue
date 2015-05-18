@@ -81,8 +81,9 @@ app.get('/:roomId', function(req, res, next) {
     if (!scoped.get()) {
       scoped.set({
         name: '',
+        html: '',
         fruits: []
-      })
+      });
     }
 
     model.bundle(function(err, bundle) {
