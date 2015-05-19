@@ -61,15 +61,10 @@ app.get('/script.js', function(req, res, next) {
   });
 });
 
-var indexTemplate = fs.readFileSync(__dirname + '/index.html', 'utf-8');
-
-app.get('/:roomId', function(req, res, next) {
+app.get('/model/:roomId', function(req, res, next) {
   var model = req.getModel();
-  // Only handle URLs that use alphanumberic characters, underscores, and dashes
+  
   if (!/^[a-zA-Z0-9_-]+$/.test(req.params.roomId)) return next();
-  // Prevent the browser from storing the HTML response in its back cache, since
-  // that will cause it to render with the data from the initial load first
-  res.setHeader('Cache-Control', 'no-store');
 
   var roomPath = 'stores.' + req.params.roomId;
 
@@ -88,14 +83,13 @@ app.get('/:roomId', function(req, res, next) {
 
     model.bundle(function(err, bundle) {
       if (err) return next(err);
-      var html = indexTemplate + '\n<script async src="/script.js" data-bundle=\'' + JSON.stringify(bundle).replace(/'/g, '&#39;') + '\'></script>';
-      res.send(html);
+      res.send(JSON.stringify(bundle));
     });
   });
 });
 
 app.get('/', function(req, res) {
-  res.redirect('/home');
+  res.sendfile(__dirname + '/public/index.html');
 });
 
 var port = process.env.PORT || 51893;

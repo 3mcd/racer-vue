@@ -1,19 +1,21 @@
 var Vue = require('vue');
-var Racer = require('racer');
-var bootstrap = JSON.parse(document.scripts[0].getAttribute('data-bundle'));
-var Model = Racer.createModel(bootstrap);
+var racer = require('racer');
 var modelProxy = require('./racer-model-proxy');
+var http = require('superagent');
 
 require('./directives');
 require('./components');
 
-var store = modelProxy(Model.at('_page.store'));
+// TODO: Implement client-side routing
+http.get('/model/eric').end(function (err, res) {
+  var data = JSON.parse(res.text);
+  var model = window.model = racer.createModel(data);
+  var store = window.store = modelProxy(model.at('_page.store'));
 
-window.store = store;
-
-var app = new Vue({
-  el: "body",
-  data: {
-    store: store
-  }
+  var app = new Vue({
+    el: "body",
+    data: {
+      store: store
+    }
+  });
 });

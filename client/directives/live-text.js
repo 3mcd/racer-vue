@@ -5,21 +5,24 @@ Vue.directive('live-text', {
   twoWay: true,
 
   bind: function () {
-    var _this = this;
-
-    this.scoped = _this.vm.$data.$model.at(this.expression);
-    this.type = typeof this.scoped.get();
+    /**
+     * Grab a scoped model at the child path.
+     */
+    var scoped = this.vm.$get('$model').at(this.expression);
+    var type = typeof scoped.get();
 
     this.handler = function () {
-      if ('number' == _this.type) {
-        intOp(_this.scoped, parseInt(_this.el.value));
+      if ('number' == type) {
+        intOp(scoped, parseInt(this.el.value));
       } else {
-        stringOp(_this.scoped, _this.el.value, _this.scoped.get());
+        stringOp(scoped, this.el.value, scoped.get());
       }
-    };
+    }.bind(this);
 
-    this.attr = this.el.nodeType === 3 || this.el.tagName == "TEXTAREA" || this.el.tagName == "INPUT" ?
-    'value' : 'textContent';
+    this.attr =
+      this.el.nodeType === 3 ||
+      this.el.tagName == "TEXTAREA" ||
+      this.el.tagName == "INPUT" ? 'value' : 'textContent';
 
     this.el.addEventListener('keyup', this.handler);
   },
@@ -34,6 +37,10 @@ Vue.directive('live-text', {
     this.el[this.attr] = value.toString();
     
     setInputSelection(this.el, pos.start, pos.end);
+  },
+
+  unbind: function () {
+    this.el.removeEventListener('keyup', this.handler);
   }
 
 });

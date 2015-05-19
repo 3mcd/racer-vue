@@ -1,0 +1,18 @@
+<h2>{{name}}</h2>
+
+{{{html}}}
+<h3>Fruits</h3>
+
+<div>
+  <span>Order:</span>
+  <button v-on="click : orderBy('cost')">Cost</button>
+  <button v-on="click : orderBy('name')">Name</button>
+  <span>(order: {{reverse ? 'asc' : 'desc'}})</span>
+</div>
+
+<ul>
+  <li v-repeat="fruits | orderBy orderField reverse">
+    <label for="fruit-{{$index}}-name">
+      <span>{{name}} - ${{cost}}</span>
+  </li>
+</ul>

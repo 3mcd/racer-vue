@@ -3,3 +3,4 @@
  */
 
 require('./editor');
+require('./output');
