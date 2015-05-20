@@ -9,7 +9,6 @@
  * @return {Object}        Proxy object
  */
 module.exports = function modelProxy(model, path) {
-  var paths = {};
   /**
    * Determine scoped model if model is un-scoped and a model path was supplied.
    */
