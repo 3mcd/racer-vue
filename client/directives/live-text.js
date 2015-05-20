@@ -8,7 +8,7 @@ Vue.directive('live-text', {
     /**
      * Grab a scoped model at the child path.
      */
-    var scoped = this.vm.$get('$model').at(this.expression);
+    var scoped = this.vm.$data.$model.at(this.expression);
     var type = typeof scoped.get();
 
     this.handler = function () {
