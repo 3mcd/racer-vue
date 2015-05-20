@@ -17,19 +17,6 @@ module.exports = function modelProxy(model, path) {
     model = model.at(path);
   }
 
-  // WIP
-  // var get = model.get;
-
-  // model.get = function (path) {
-  //   if (!paths[path]) {
-  //     paths[path] = extend(get.call(model, path));
-
-  //     model.on('all', path ? path + '**' : '**', function () {
-  //       var data = extend(get.call(model, path));
-  //     });
-  //   }
-  // };
-
   /**
    * Get the current state of the model. Racer will continuously update this
    * object, so it can be passed straight to an observer.
@@ -75,34 +62,3 @@ module.exports = function modelProxy(model, path) {
    */
   return proxy;
 };
-
-function extend(from, to) {
-    if (from === to) return to;
-
-    if (from.constructor === Array && to && to.constructor === Array) {
-      for (var i = 0; i < from.length; ++i) {
-        to[i] = extendObject(from[i], to[i]);
-      }
-      to.splice(from.length, to.length);
-
-      return to;
-    } else if (from instanceof Object && to && to instanceof Object) {
-      for (var key in to) {
-        if (typeof from[key] === 'undefined' || key === '$$hashKey') {
-          delete to[key];
-        }
-      }
-
-      for (key in from) {
-        if (key === '$$hashKey') continue;
-
-        to[key] = extendObject(from[key], to[key]);
-      }
-
-      return to;
-    } else if (to === undefined) {
-      return extendObject(from, new from.constructor());
-    } else {
-      return from;
-    }
-  }
