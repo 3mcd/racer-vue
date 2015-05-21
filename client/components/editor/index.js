@@ -6,10 +6,7 @@ var CrEditor = Vue.extend({
   methods: {
     addItem: function () {
       var newFruit = { name: '', cost: 0 };
-      this.fruits.$model.pass({ local: true }).push(newFruit);
-    },
-    removeItem: function (index) {
-      this.fruits.$model.pass({ local: true }).remove(index);
+      this.fruits.$model.push(newFruit);
     }
   }
 });

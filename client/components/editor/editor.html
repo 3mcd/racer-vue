@@ -10,13 +10,7 @@
 </div>
 <ul>
   <li v-repeat="fruits">
-    <label for="fruit-{{$index}}-name">
-      Fruit: <input id="fruit-{{$index}}-name" v-live-text="name">
-    </label>
-    <label for="fruit-{{$index}}-cost">
-      Cost: <input id="fruit-{{$index}}-cost" v-live-text="cost">
-    </label>
-    <button v-on="click : removeItem(fruits.indexOf(this.$data))">Remove</button>
+    <cr-list-item v-with="$data"></cr-list-item>
   </li>
 </ul>
 <div>

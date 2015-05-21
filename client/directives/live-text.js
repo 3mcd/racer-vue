@@ -2,20 +2,14 @@ var Vue = require('vue');
 
 Vue.directive('live-text', {
 
-  twoWay: true,
-
   bind: function () {
-    /**
-     * Grab a scoped model at the child path.
-     */
-    var scoped = this.vm.$data.$model.at(this.expression);
-    var type = typeof scoped.get();
-
+    var expression = this.expression;
     this.handler = function () {
-      if ('number' == type) {
-        intOp(scoped, parseInt(this.el.value));
+      var previous = this.vm.$data.$model.get(expression);
+      if ('number' == typeof previous) {
+        intOp(this.vm.$data.$model, expression, parseInt(this.el.value));
       } else {
-        stringOp(scoped, this.el.value, scoped.get());
+        stringOp(this.vm.$data.$model, expression, this.el.value, previous);
       }
     }.bind(this);
 
@@ -24,7 +18,7 @@ Vue.directive('live-text', {
       this.el.tagName == "TEXTAREA" ||
       this.el.tagName == "INPUT" ? 'value' : 'textContent';
 
-    this.el.addEventListener('keyup', this.handler);
+    this.el.addEventListener('input', this.handler);
   },
 
   update: function (value, previous) {
@@ -40,16 +34,16 @@ Vue.directive('live-text', {
   },
 
   unbind: function () {
-    this.el.removeEventListener('keyup', this.handler);
+    this.el.removeEventListener('input', this.handler);
   }
 
 });
 
-function intOp(model, value) {
-  model.pass({ local: true }).set(value);
+function intOp(model, path, value) {
+  model.set(path, value);
 }
 
-function stringOp(model, value, previous) {
+function stringOp(model, path, value, previous) {
   var start = 0,
       end = 0;
 
@@ -71,11 +65,11 @@ function stringOp(model, value, previous) {
 
   if (previous.length !== start + end) {
     var howMany = previous.length - start - end;
-    model.pass({ local: true }).stringRemove(start, howMany);
+    model.stringRemove(path, start, howMany);
   }
   if (value.length !== start + end) {
     var inserted = value.slice(start, value.length - end);
-    model.pass({ local: true }).stringInsert(start, inserted);
+    model.stringInsert(path, start, inserted);
   }
 }
 

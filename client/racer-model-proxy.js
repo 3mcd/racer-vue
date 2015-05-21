@@ -8,14 +8,13 @@
  * @param  {Object} parent Parent proxy object
  * @return {Object}        Proxy object
  */
-module.exports = function modelProxy(model, path) {
+function modelProxy(model, path) {
   /**
    * Determine scoped model if model is un-scoped and a model path was supplied.
    */
   if (path !== null && path != void(0)) {
     model = model.at(path);
   }
-
   /**
    * Get the current state of the model. Racer will continuously update this
    * object, so it can be passed straight to an observer.
@@ -39,13 +38,8 @@ module.exports = function modelProxy(model, path) {
       get: function () {
         return model;
       },
-      enumerable: false
-    },
-    $subPath: {
-      get: function () {
-        return path;
-      },
-      enumerable: false
+      enumerable: false,
+      configurable: true
     }
   });
   /**
@@ -53,11 +47,68 @@ module.exports = function modelProxy(model, path) {
    */
   model.on('insert', function onModelInsert(index, values, passed) {
     for (var i = 0; i < values.length; i++) {
-      proxy[index + i] = modelProxy(model, index + i, proxy);
+      proxy[index + i] = modelProxy(model, index + i);
     }
+  });
+  /**
+   * Re-evaluate child proxy objects.
+   */
+  model.on('move', function onModelMove(from, to, howMany, passed) {
+    var right = from < to;
+    
+    to = right ? to + 1 : to - 1;
+
+    for (; from !== to; right ? from++ : from--) {
+      cleanupProxy(proxy[from]);
+      proxy[from] = modelProxy(model, from);
+    }
+  });
+  /**
+   * Cleanup removed objects' model refs and event listeners.
+   */
+  model.on('remove', function onModelRemove(index, values, passed) {
+    var end = proxy.length;
+
+    for (; index <= end - 1; index++) {
+      cleanupProxy(proxy[index]);
+      proxy[index] = modelProxy(model, index);
+    }
+
+    cleanupProxies(values);
   });
   /**
    * TODO: Update proxy based on other model events, if necessary.
    */
   return proxy;
-};
+}
+
+module.exports = modelProxy;
+
+/**
+ * Remove model refs and event listeners from a proxy object.
+ * @param  {Object} proxy Proxy object
+ * @return {void}
+ */
+function cleanupProxy(proxy) {
+  if ('object' == typeof proxy.$model) {
+    proxy.$model.removeAllListeners();
+    delete proxy.$model;
+    for (var prop in proxy) {
+      if (proxy.hasOwnProperty(prop) && 'object' == typeof proxy[prop] && proxy[prop] !== null) {
+        cleanupProxy(proxy[prop]);
+      }
+    }
+  }
+}
+
+/**
+ * Execute cleanupProxy for each model in an array or list of arguments.
+ * @param  {Array} args List of proxy objects
+ * @return {void}
+ */
+function cleanupProxies(args) {
+  args = Array.prototype.slice.call(args || arguments);
+  for (var i = 0; i < args.length; i++) {
+    cleanupProxy(args[i]);
+  }
+}
