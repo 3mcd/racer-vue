@@ -5,7 +5,6 @@
  * trigger real-time server changes from deeply nested properties in the proxy.
  * @param  {ChildModel} model  Racer model
  * @param  {String} path   Optional path to scope a model via model.at()
- * @param  {Object} parent Parent proxy object
  * @return {Object}        Proxy object
  */
 function modelProxy(model, path) {
