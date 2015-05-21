@@ -14,7 +14,6 @@ var CrEditor = Vue.extend({
     },
     onMousedown: function (e) {
       this.$ul.style.height = this.$ul.clientHeight + 'px';
-      console.log(e.target.tagName);
       if (e.target.tagName == 'CR-LIST-ITEM') {
         this.activeItem = e.srcElement;
       }
@@ -28,6 +27,10 @@ var CrEditor = Vue.extend({
       }.bind(this), 0);
     },
     onMouseup: function (e) {
+      /**
+       * TODO: Replace with better drag/drop implementation. With vectors and
+       * stuff.
+       */
       var listItems = Array.prototype.slice.call(this.$ul.querySelectorAll('cr-list-item')),
           listItem,
           ulRect = getRect(this.$ul),
@@ -50,7 +53,6 @@ var CrEditor = Vue.extend({
              * of the the radius of the y axis.
              */
             if (Math.abs((rect.top - (rect.height / 2)) - (activeRect.top - (activeRect.height / 2))) < (activeRect.height / 2)) {
-              console.log(listItems.indexOf(this.activeItem), i);
               this.fruits.$model.move(activeIndex, i);
             }
           }
