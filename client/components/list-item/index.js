@@ -3,9 +3,12 @@ var Vue = require('vue'),
 
 var CrListItem = Vue.extend({
   template: template,
+  ready: function () {
+    this.$el.classList.add('CrListItem');
+  },
   methods: {
     removeItem: function (item) {
-      item.$model.remove();
+      this.$data.$model.remove();
     }
   }
 });

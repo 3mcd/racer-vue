@@ -63,7 +63,8 @@ function modelProxy(model, path) {
     }
   });
   /**
-   * Cleanup removed objects' model refs and event listeners.
+   * Cleanup removed objects' model refs and event listeners and re-evaluate
+   * affected indexes.
    */
   model.on('remove', function onModelRemove(index, values, passed) {
     var end = proxy.length;

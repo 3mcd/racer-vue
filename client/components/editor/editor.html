@@ -1,20 +1,22 @@
-<div>
-  <label for="name">
-    Store Name: <input id="name" v-live-text="name" autofocus></input>
-  </label>
+<div class="noselect" v-on="mousemove : onMousemove, mouseup : onMouseup">
+  <div>
+    <label for="name">
+      Store Name: <input id="name" v-live-text="name" autofocus></input>
+    </label>
+  </div>
+  <div>
+    <label for="description">
+      Store Description: <textarea id="description" v-live-text="html"></textarea>
+    </label>
+  </div>
+  <ul>
+    <li v-repeat="fruits" v-on="mousedown : onMousedown">
+      <cr-list-item v-with="$data"></cr-list-item>
+    </li>
+  </ul>
+  <div>
+    <button v-on="click : addItem">Add Fruit</button>
+  </div>
+  <hr />
+  <cr-output></cr-output>
 </div>
-<div>
-  <label for="description">
-    Store Description: <textarea id="description" v-live-text="html"></textarea>
-  </label>
-</div>
-<ul>
-  <li v-repeat="fruits">
-    <cr-list-item v-with="$data"></cr-list-item>
-  </li>
-</ul>
-<div>
-  <button v-on="click : addItem">Add Fruit</button>
-</div>
-<hr />
-<cr-output></cr-output>
