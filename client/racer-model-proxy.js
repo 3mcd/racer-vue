@@ -9,7 +9,7 @@
  */
 function modelProxy(model, path) {
   /**
-   * Determine scoped model if model is un-scoped and a model path was supplied.
+   * Determine scoped model if a model path was supplied.
    */
   if (path !== null && path != void(0)) {
     model = model.at(path);
